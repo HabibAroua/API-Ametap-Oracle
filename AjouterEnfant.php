@@ -22,7 +22,8 @@
 	{
 		$p->insert($e->getId(),$date_inscription);
 		$e->insert($e->getId(),$e->getNom(),$e->getPrenom(),$e->getDate_naissance(),$e->getEcole(),$e->getMatricule());
-        echo $e->getId().' '.$e->getNom().' '.$e->getPrenom().' '.$e->getDate_naissance().' '.$e->getEcole().' '.$e->getMatricule();
+		echo 'insertion effectué avec succes';
+        //echo $e->getId().' '.$e->getNom().' '.$e->getPrenom().' '.$e->getDate_naissance().' '.$e->getEcole().' '.$e->getMatricule();
 	}
 	else
 	{

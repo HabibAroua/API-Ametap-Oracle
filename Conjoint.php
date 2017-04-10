@@ -87,11 +87,11 @@
 			$res= $conn->exec($sql);
 			if($res!=0)
 			{
-				echo "<script>alert('insertion effectué avec succes') </script>";
+				//echo "<script>alert('insertion effectué avec succes') </script>";
 			}
 			else
 			{
-				echo "<script>alert('Erreur') </script>";
+				//echo "<script>alert('Erreur') </script>";
 			}
 			
 		}
