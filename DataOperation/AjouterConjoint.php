@@ -1,7 +1,7 @@
 <?php
-    require_once('Conjoint.php');
-	require_once('Adherent.php');
-	require_once('Participant.php');
+    require_once('C:\oraclexe\trabajo\Ametap\Model\Conjoint.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
 	$cin=$_POST['cin'];
 	$nom=$_POST['nom'];
 	$prenom=$_POST['prenom'];

@@ -170,17 +170,35 @@
 			
 		}
 		
+		public function afficheFamile($matricule)
+		{
+			$sql="select conjoint.cin as Identificateur , conjoint.nom, conjoint.prenom , conjoint.date_naissance from conjoint where conjoint.matricule=$matricule union all select Enfant.id , Enfant.nom, Enfant.prenom , Enfant.date_naissance from Enfant where Enfant.matricule=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $T[$i]=$exampleArray = array('identificateur'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3] ,);
+				$n=$i++;
+			}
+			return json_encode($T);
+		}
 		
-		
-		
-         
-    }
-	
-
-
-
-
-
-
+		public function modifierInformationPersonnel($oldLogin,$newLogin,$newPassword)
+		{
+			$sql="update Adherent set login=$newLogin , password=$newPassword where Login=$oldLogin ";
+			global $conn;
+			$res=$conn->exec($sql);
+			if($res!=0)
+			{
+				echo 'Modification effectué avec succes';
+			}
+			else
+			{
+				echo 'Erreur de modification';
+			}
+		}
+	}
 
 ?>

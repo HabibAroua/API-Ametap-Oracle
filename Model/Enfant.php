@@ -87,15 +87,58 @@
 			$res= $conn->exec($sql);
 			if($res!=0)
 			{
-				echo "<script>alert('insertion effectué avec succes') </script>";
+				echo 'insertion effectué avec succes';
 			}
 			else
 			{
-				echo "<script>alert('Erreur') </script>";
+				echo 'Erreur';
 			}
-			
+		}
+		
+		public function update($id,$nom,$prenom,$date_naissance,$ecole,$matricule)
+		{
+			global $conn;
+			$sql="update Enfant set id=$id , nom='$nom' , prenom='$prenom' , date_naissance='$date_naissance' , ECOLE='$ecole' where matricule=$matricule and id=$id";
+			$res=$conn->exec($sql);
+			if($res!=0)
+			{
+				echo 'modification effectué';
+			}
+			else
+			{
+				echo 'Erreur';
+			}
+		}
+		
+		public function afficheEnfant($matricule)
+		{
+			$sql="select * from Enfant where matricule=$matricule ";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $T[$i]=$exampleArray = array('id'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3]." ",'ecole'=>$tab[4] ,);
+				$n=$i++;
+			}
+			return json_encode($T);
+		}
+		
+		public function deleteEnfant($id)
+		{
+			$sql="delete Enfant where id=$id";
+			global $conn;
+			$res=$conn->exec($sql);
+			if($res!=0)
+			{
+				echo 'Suppression effectué avec succes';
+			}
+			else
+			{
+				echo 'Erreur de suppresion';
+			}
 		}
 	}
-//$e=new Enfant(1,'Habib','Aroua','15/11/1994','Attarine',1);
-//echo $e->getNom().' '.$e->getPrenom().' '.$e->getEcole().' '.$e->getMatricule().' '.$e->getId();
+
 ?>

@@ -46,10 +46,7 @@
 			return json_encode($T);
 		}
 	}
-
+	
 $a=new Activite(1,1,1,1,1,1,1,7,7,7,7,7);
 echo $a->sellectAllActivity();
-
-
-
 ?>

@@ -18,6 +18,7 @@
 			$this->metier=$metier;
 			$this->matricule=$matricule;
 		}
+		
 		//Getters
 		public function getCin()
 		{
@@ -95,6 +96,52 @@
 			}
 			
 		}
+		
+		public function update($cin,$nom,$prenom,$date_naissance,$metier,$matricule)
+		{
+			global $conn;
+			$sql="update Conjoint set cin=$cin , nom='$nom' , prenom='$prenom' , date_naissance='$date_naissance' , metier='$metier' where matricule=$matricule and cin=$cin";
+			$res=$conn->exec($sql);
+			if($res!=0)
+			{
+				echo 'modification effectué';
+			}
+			else
+			{
+				echo 'Erreur';
+			}
+		}
+		
+		public function affiche($matricule)
+		{
+			$sql="select cin , nom , prenom ,date_naissance , metier from Conjoint where matricule=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $T[$i]=$exampleArray = array('cin'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3]." ",'metier'=>$tab[4] ,);
+				$n=$i++;
+			}
+			return json_encode($T);
+		}
+		
+		public function deleteConjoint($cin)
+		{
+			$sql="delete Conjoint where cin=$cin";
+			global $conn;
+			$res=$conn->exec($sql);
+			if($res!=0)
+			{
+				echo 'Suppresion effectué avec succes';
+			}
+			else
+			{
+				echo 'Erreur de suppresion';
+			}
+		}
+		
 	}	
 
 //$c=new Conjoint(12,'Habib','Aroua','15/11/1994','Ingenieur',3);

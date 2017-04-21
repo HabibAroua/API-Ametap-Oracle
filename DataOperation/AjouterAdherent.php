@@ -1,6 +1,6 @@
 <?php
-    require_once('Adherent.php');
-    require_once('Participant.php');
+    require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
+    require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
     
     $matricule=$_POST['matricule'];
 	$login=$_POST['login'];

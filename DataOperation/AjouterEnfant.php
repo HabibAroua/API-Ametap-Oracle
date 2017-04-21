@@ -1,7 +1,7 @@
 <?php
-    require_once('Enfant.php');
-	require_once('Adherent.php');
-	require_once('Participant.php');
+    require_once('C:\oraclexe\trabajo\Ametap\Model\Enfant.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
 	$id=$_POST['id'];
 	$nom=$_POST['nom'];
 	$prenom=$_POST['prenom'];
