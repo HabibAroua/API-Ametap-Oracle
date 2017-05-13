@@ -87,7 +87,7 @@
 			$res= $conn->exec($sql);
 			if($res!=0)
 			{
-				echo 'insertion effectué avec succes';
+				echo "L'insertion de votre enfant est effectué avec succés";
 			}
 			else
 			{
@@ -102,7 +102,7 @@
 			$res=$conn->exec($sql);
 			if($res!=0)
 			{
-				echo 'modification effectué';
+				echo 'La mise à jour de votre enfant est effectué avec succés';
 			}
 			else
 			{
@@ -132,7 +132,7 @@
 			$res=$conn->exec($sql);
 			if($res!=0)
 			{
-				echo 'Suppression effectué avec succes';
+				echo 'La suppression de votre enfant est effectué avec succés';
 			}
 			else
 			{

@@ -18,7 +18,7 @@
 		$p->insert($c->getCin(),$date_inscription);
 		$c->insert($c->getCin(),$c->getNom(),$c->getPrenom(),$c->getDate_naissance(),$c->getMetier(),$matricule);
         //echo $c->getCin().' '.$c->getNom().' '.$c->getPrenom().' '.$c->getDate_naissance().' '.$c->getMetier().' '.$c->getMatricule();
-		echo 'insertion effectué avec succes';
+		echo "L'insertion de votre conjoint est effectué avec succes";
 	}
 	else
 	{

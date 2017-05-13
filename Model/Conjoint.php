@@ -88,11 +88,11 @@
 			$res= $conn->exec($sql);
 			if($res!=0)
 			{
-				//echo "<script>alert('insertion effectué avec succes') </script>";
+				
 			}
 			else
 			{
-				//echo "<script>alert('Erreur') </script>";
+				
 			}
 			
 		}
@@ -142,9 +142,20 @@
 			}
 		}
 		
+		public function findCinByMatricule($matricule)
+		{
+			$sql="select Conjoint.cin from Conjoint where Conjoint.matricule=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $cin=$tab[0];
+			}
+			return $cin;
+		}
+		
 	}	
-
-//$c=new Conjoint(12,'Habib','Aroua','15/11/1994','Ingenieur',3);
-//echo $c->getCin().' '.$c->getNom().' '.$c->getPrenom().' '.$c->getDate_naissance().' '.$c->getMetier().' '.$c->getMatricule();
 
 ?>

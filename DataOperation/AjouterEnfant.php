@@ -29,13 +29,13 @@
 	{
 		if($x==$y)
 		{
-			echo "vous n'avez pas ajouter un nouveau enfant";
+			echo "Vous ne pouvez pas ajouter un nouvel enfant";
 		}
 		else
 		{
 			if($x<$y)
 			{
-				echo "vous n'avez pas ajouter un nouveau enfant";
+				echo "Vous ne pouvez pas ajouter un nouvel enfant";
 			}
 		}
 	}

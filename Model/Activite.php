@@ -33,20 +33,19 @@
 		
 		public function sellectAllActivity()
 		{
-			$sql="select Activite.ID , Activite.Nom_activite , Activite.date_debut , Activite.date_fin , Activite.PRIX_UINITAIRE , Organisateur.nom_organisateur  from Activite , organisateur where Activite.Date_debut<Sysdate and Organisateur.id=Activite.idOrganisateur";
+		 	$sql="select Activite.ID , Activite.Nom_activite , Activite.date_debut , Activite.date_fin , Activite.PRIX_UINITAIRE , Organisateur.nom_organisateur  from Activite , organisateur where (sysdate>=Activite.date_debut_inscription) and (sysdate<=Activite.date_fin_inscription)  and Organisateur.id=Activite.idOrganisateur";
             global $conn;
             $res=$conn->query($sql);
-			$i=0;
-			$n=0;
+		 	$i=0;
+		 	$n=0;
             while($tab=$res->fetch(PDO::FETCH_NUM))
             {
                $T[$i]=$exampleArray = array('ID'=>$tab[0]." ",'Nom_activite'=>$tab[1]." ",'date_debut'=>$tab[2]." ",'date_fin'=>$tab[3]." ",'prix_unitaire'=>$tab[4]." ",'nom_organisateur'=>$tab[5] ,);
-				$n=$i++;
-			}
-			return json_encode($T);
+		 		$n=$i++;
+		 	}
+		 	return json_encode($T);
 		}
 	}
-	
-$a=new Activite(1,1,1,1,1,1,1,7,7,7,7,7);
-echo $a->sellectAllActivity();
+	$a=new Activite(1,1,1,1,1,1,1,7,7,7,7,7);
+    echo $a->sellectAllActivity();
 ?>

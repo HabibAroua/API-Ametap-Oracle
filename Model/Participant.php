@@ -30,12 +30,10 @@
 			$res=$conn->exec($sql);
 			if($res!=0)
 			{
-				//echo "<script>alert('participant supprimer')</script>";
 				return true ;
 			}
 			else
 			{
-				//echo "<script>alert('Erreur de ')</script>";
 				return false;
 			}
 		}

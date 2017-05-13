@@ -2,7 +2,7 @@
     $tns = "  
     (DESCRIPTION =
         (ADDRESS_LIST =
-            (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.1.41)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.1.88)(PORT = 1521))
         )
         (CONNECT_DATA =
             (SERVICE_NAME = XE)

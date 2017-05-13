@@ -90,7 +90,7 @@
 			$res=$conn->exec($sql);
 			if($res!=0)
 			{
-				echo 'Merci pour votre demande attant pour notre Confirmation';
+				echo 'Votre demande a été envoyé avec succés';
 			}
 			else
 			{
@@ -116,6 +116,21 @@
 			{
 				return false;
 			}
+		}
+		
+		public function afficheNotf($matricule)
+		{
+			$sql="select Participation.notif ,Activite.Nom_Activite from Participation , Activite where matriculePart=$matricule and Activite.id=IdActivite ";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+			while($tab=$res->fetch(PDO::FETCH_NUM))
+			{
+				$T[$i]=$exampleArray = array('Notif'=>$tab[0]." ",'Nom_Activite'=>$tab[1],);
+				$n=$i++;
+			}
+			return json_encode($T);
 		}
 	}
 

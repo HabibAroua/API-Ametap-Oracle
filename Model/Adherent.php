@@ -20,7 +20,6 @@
 			$sql="insert into ADHERENT values ($matriculeEtap, $matriculeAmetap,'$login','$password',0)";
 			global $conn;
 			$res=$conn->exec($sql);
-			//echo $sql ;
 			if($res!=0)
 			{
 				echo "<script>alert('L'adherent est ajouté avec succes')</script>";
