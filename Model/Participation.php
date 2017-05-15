@@ -132,6 +132,21 @@
 			}
 			return json_encode($T);
 		}
+		
+		public function afficheLastNotif($matricule)
+		{
+		    $sql="select Participation.Notif , Activite.NOM_ACTIVITE from Participation,Participant,Adherent,Personnel,Activite where Participation.id=(select MAX(Participation.id) from Participation where matriculePart=$matricule) and Adherent.matriculeAmetap=Personnel.matricule and Participant.matricule=Adherent.matriculeAmetap and Participation.matriculePart=Adherent.matriculeEtap and Participation.matriculePart=Participant.matricule and Activite.id=Participation.idActivite and Participation.matriculePart=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+			$i=0;
+			$n=0;
+			while($tab=$res->fetch(PDO::FETCH_NUM))
+			{
+				$T[$i]=$exampleArray = array('Notif'=>$tab[0]." ",'Nom_Activite'=>$tab[1],);
+				$n=$i++;
+			}
+			return json_encode($T);	
+		}
 	}
 
 
