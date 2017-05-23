@@ -186,7 +186,7 @@
 		
 		public function modifierInformationPersonnel($oldLogin,$newLogin,$newPassword)
 		{
-			$sql="update Adherent set login=$newLogin , password=$newPassword where Login=$oldLogin ";
+			$sql="update Adherent set login='$newLogin' , password='$newPassword' where Login='$oldLogin' ";
 			global $conn;
 			$res=$conn->exec($sql);
 			if($res!=0)
