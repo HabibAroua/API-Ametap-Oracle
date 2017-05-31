@@ -3,6 +3,6 @@
 	$a=new Adherent();
 	$oldLogin=$_POST['oldLogin'];
 	$newLogin=$_POST['newLogin'];
-	$newPassword=$_POST['newPassword'];
+	$newPassword=$_POST['y'];
 	$a->modifierInformationPersonnel($oldLogin,$newLogin,$newPassword);
 ?>

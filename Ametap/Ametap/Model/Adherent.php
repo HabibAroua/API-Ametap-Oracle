@@ -198,6 +198,19 @@
 				echo 'Erreur de modification';
 			}
 		}
+		
+		public function getNombrePoint($matricule)
+		{
+			$sql="select Nombre_point from adherent where matriculeEtap=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+			$ch='';
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $ch=$tab[0];
+			}
+			return $ch;
+		}
 	}
 
 ?>

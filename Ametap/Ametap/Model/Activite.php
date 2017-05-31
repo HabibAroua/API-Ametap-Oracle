@@ -45,7 +45,20 @@
 		 	}
 		 	return json_encode($T);
 		}
+		
+		public function AfficheHistorique($matricule)
+		{
+			$sql="select Activite.id , Activite.nom_activite , Activite.date_debut , Activite.date_fin from Activite , Participation , Participant , Personnel , Adherent where Personnel.matricule=Adherent.matriculeEtap and Adherent.matriculeAmetap=Participant.matricule and Participant.matricule=Participation.matriculePart and Participation.matriculePart=Adherent.matriculeEtap and Participation.matriculePart=Participant.matricule and Personnel.matricule=Participation.matriculePart and Participation.matriculePart=$matricule and Participation.etat=1 and Participation.ETATPAYAIMENT=1 and Activite.id=Participation.idActivite and Adherent.matriculeEtap=$matricule order by Activite.date_debut ";
+            global $conn;
+            $res=$conn->query($sql);
+		 	$i=0;
+		 	$n=0;
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $T[$i]=$exampleArray = array('ID'=>$tab[0]." ",'Nom_activite'=>$tab[1]." ",'date_debut'=>$tab[2]." ",'date_fin'=>$tab[3]." ",'prix_unitaire'=>$tab[4]." ",'nom_organisateur'=>$tab[5] ,);
+		 		$n=$i++;
+		 	}
+		 	return json_encode($T);
+		}
 	}
-	$a=new Activite(1,1,1,1,1,1,1,7,7,7,7,7);
-    echo $a->sellectAllActivity();
 ?>
