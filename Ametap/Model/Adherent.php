@@ -17,17 +17,17 @@
 		public function insert($matriculeEtap,$matriculeAmetap,$login,$password)
 		{
 
-			$sql="insert into ADHERENT values ($matriculeEtap, $matriculeAmetap,'$login','$password',0)";
+			$sql="insert into ADHERENT values ($matriculeEtap, $matriculeAmetap,'$login','$password',300)";
 			global $conn;
 			$res=$conn->exec($sql);
 			if($res!=0)
 			{
-				echo "<script>alert('L'adherent est ajouté avec succes')</script>";
+				echo "'L'inscription est effectué avec succes'";
 				return true ;
 			}
 			else
 			{
-				echo "<script>alert('Erreur de ')</script>";
+				echo "Matricule n'existe pas ou déjà inscrit avec AMETAP";
 				return false;
 			}
 
@@ -147,6 +147,18 @@
 		public function nombreEnfantEnregistrer($matricule)
 		{
 			$sql="select count(*) from Enfant where matricule=$matricule ";
+			global $conn;
+			$res=$conn->query($sql);
+			while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+				$nbr_enfant= $tab[0];
+			}
+			return $nbr_enfant;
+		}
+		
+		public function nombreConjointEnregistrer($matricule)
+		{
+			$sql="select count(*) from Conjoint where matricule=$matricule ";
 			global $conn;
 			$res=$conn->query($sql);
 			while($tab=$res->fetch(PDO::FETCH_NUM))

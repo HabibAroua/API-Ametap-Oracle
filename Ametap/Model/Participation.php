@@ -107,6 +107,7 @@
 			while($tab=$res->fetch(PDO::FETCH_NUM))
 			{
 				$s=$tab[0];
+			
 			}
 			if($s==$matricule)
 			{

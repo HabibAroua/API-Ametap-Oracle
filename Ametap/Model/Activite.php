@@ -44,6 +44,7 @@
 		 		$n=$i++;
 		 	}
 		 	return json_encode($T);
+			
 		}
 		
 		public function AfficheHistorique($matricule)
@@ -59,6 +60,19 @@
 			  $n=$i++;
 		 	}
 		 	return json_encode($T);
+		}
+		
+		public function findNombrePointById($id)
+		{
+			$sql="select NBR_POINT from Activite where id=$id";
+            global $conn;
+            $res=$conn->query($sql);
+		 	
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+             $r=$tab[0]; 
+		 	}
+			return $r;
 		}
 	}
 ?>

@@ -11,26 +11,22 @@
 	$a=new Adherent();
 	$matricule=$a->findMatriculeByLogin($_POST['login']);
 	$e=new Enfant($id,$nom,$prenom,$date_naissance,$ecole,$matricule);
-	echo $matricule;
 	$p=new Participant();
 	$date_inscription=date('d').'/'.date('m').'/'.date('Y');
-	$x=$a->nombreEnfant(3);
-	$y=$a->nombreEnfantEnregistrer(3);
+	$x=$a->nombreEnfant($a->findMatriculeByLogin($_POST['login']));
+	$y=$a->nombreEnfantEnregistrer($a->findMatriculeByLogin($_POST['login']));
 	
 	
 	if($x>$y)
 	{
-		$p->deletes($matricule);
 		$p->insert($e->getId(),$date_inscription);
 		$e->insert($e->getId(),$e->getNom(),$e->getPrenom(),$e->getDate_naissance(),$e->getEcole(),$e->getMatricule());
-		echo 'insertion effectué avec succes';
-        //echo $e->getId().' '.$e->getNom().' '.$e->getPrenom().' '.$e->getDate_naissance().' '.$e->getEcole().' '.$e->getMatricule();
 	}
 	else
 	{
 		if($x==$y)
 		{
-			echo "Vous ne pouvez pas ajouter un nouvel enfant";
+			echo "Vous ne pouvez pas ajouter enfant";
 		}
 		else
 		{

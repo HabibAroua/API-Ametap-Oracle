@@ -149,13 +149,32 @@
 			$res=$conn->query($sql);
 			$i=0;
 			$n=0;
+			$cin="";
             while($tab=$res->fetch(PDO::FETCH_NUM))
             {
                $cin=$tab[0];
 			}
-			return $cin;
+			if ($cin=="")
+			{
+				return "";
+			}
+			else
+			{
+			    return $cin;
+			}
 		}
 		
+		public function getNombrePoint($matricule)
+		{
+			$sql="select distinct Adherent.NOMBRE_POINT from Adherent , Conjoint where Adherent.matriculeEtap=Conjoint.matricule and Conjoint.matricule=$matricule";
+			global $conn;
+			$res=$conn->query($sql);
+            while($tab=$res->fetch(PDO::FETCH_NUM))
+            {
+               $r=$tab[0];
+			}
+			return $r;
+		}
 	}	
 
 ?>
