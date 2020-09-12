@@ -1,5 +1,5 @@
 <?php
-    require_once('C:\oraclexe\trabajo\Ametap\Model\Conjoint.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Conjoint.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
 	$a=new Adherent();
@@ -29,5 +29,4 @@
 			echo 'Vous êtes célibatire';
 		}
 	}
-	
 ?>
