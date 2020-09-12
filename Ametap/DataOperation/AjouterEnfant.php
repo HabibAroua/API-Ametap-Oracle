@@ -1,5 +1,5 @@
 <?php
-    require_once('C:\oraclexe\trabajo\Ametap\Model\Enfant.php');
+	require_once('C:\oraclexe\trabajo\Ametap\Model\Enfant.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
 	$id=$_POST['id'];
@@ -15,7 +15,6 @@
 	$date_inscription=date('d').'/'.date('m').'/'.date('Y');
 	$x=$a->nombreEnfant($a->findMatriculeByLogin($_POST['login']));
 	$y=$a->nombreEnfantEnregistrer($a->findMatriculeByLogin($_POST['login']));
-	
 	
 	if($x>$y)
 	{
