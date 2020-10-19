@@ -2,6 +2,7 @@
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Enfant.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Participant.php');
+
 	if((isset($_POST['id'])) && (isset($_POST['nom'])) && (isset($_POST['prenom'])) && (isset($_POST['date_naissance'])) && (isset($_POST['ecole'])))
 	{
 		$id=$_POST['id'];
