@@ -5,4 +5,8 @@
 	{
 		echo 'Vous avez '.$a->getNombrePoint($a->findMatriculeByLogin($_POST['login'])).' points';
 	}
+	else
+	{
+		echo "Error !!";
+	}
 ?>
