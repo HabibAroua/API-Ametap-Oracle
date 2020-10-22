@@ -3,5 +3,12 @@
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
 	$p=new Participation('','','','','','');
 	$a=new Adherent();
-	echo $p->afficheLastNotif($a->findMatriculeByLogin($_GET['login']));
+	if(isset($_GET['login']))
+	{
+		echo $p->afficheLastNotif($a->findMatriculeByLogin($_GET['login']));
+	}
+	else
+	{
+		echo "Error !!";
+	}
 ?>
