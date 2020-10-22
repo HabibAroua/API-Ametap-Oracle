@@ -8,4 +8,8 @@
 	    $password=$_GET['password'];
 	    echo $a->affiche($login,$password);
     }
+    else
+    {
+	    echo "Error !!";
+    }
 ?>
