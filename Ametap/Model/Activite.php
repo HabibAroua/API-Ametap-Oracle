@@ -16,7 +16,8 @@
 		private $idBudget;
 		private $idOrganisateur;
 		
-		public function __construct($id,$nom_activite,$capacite,$nombre_participant,$date_debut,$date_fin,$prix_unitaire,$montant_prevu,$montant_actuel,$id_TypeActivite,$idBudget,$idOrganisateur)
+		public function __construct($id,$nom_activite,$capacite,$nombre_participant,$date_debut,$date_fin,$prix_unitaire,$montant_prevu,
+					    $montant_actuel,$id_TypeActivite,$idBudget,$idOrganisateur)
 		{
 			$this->id=$id;
 			$this->nom_activite=$nom_activite;
@@ -34,9 +35,14 @@
 		
 		public function sellectAllActivity()
 		{
-		 	$sql="select Activite.ID , Activite.Nom_activite , Activite.date_debut , Activite.date_fin , Activite.PRIX_UINITAIRE , Organisateur.nom_organisateur,Activite.date_fin_inscription  from Activite , organisateur where (sysdate>=Activite.date_debut_inscription) and (sysdate<=Activite.date_fin_inscription)  and Organisateur.id=Activite.idOrganisateur";
             		global $conn;
-            		$res=$conn->query($sql);
+            		$res=$conn->query
+				(
+					"select Activite.ID , Activite.Nom_activite , Activite.date_debut , Activite.date_fin , Activite.PRIX_UINITAIRE , 
+					Organisateur.nom_organisateur,Activite.date_fin_inscription  
+					from Activite , organisateur 
+					where (sysdate>=Activite.date_debut_inscription) and (sysdate<=Activite.date_fin_inscription)  and Organisateur.id=Activite.idOrganisateur"
+				);
 		 	$i=0;
 		 	$n=0;
             		while($tab=$res->fetch(PDO::FETCH_NUM))
@@ -59,9 +65,45 @@
 		
 		public function AfficheHistorique($matricule)
 		{
-			$sql="select Activite.id ,Personnel.prenom,Personnel.nom, Activite.nom_activite , Activite.date_debut , Activite.date_fin from Activite , Participation , Participant , Personnel , Adherent where Personnel.matricule=Adherent.matriculeEtap and Adherent.matriculeAmetap=Participant.matricule and Participant.matricule=Participation.matriculePart and Participation.matriculePart=Adherent.matriculeEtap and Participation.matriculePart=Participant.matricule and Personnel.matricule=Participation.matriculePart and Participation.matriculePart=$matricule and Participation.etat=1 and Participation.ETATPAYAIMENT=1 and Activite.id=Participation.idActivite and Adherent.matriculeEtap=$matricule Union All select Activite.id ,Conjoint.prenom, Conjoint.nom , Activite.nom_activite , Activite.date_debut , Activite.date_fin from Activite , participation , participant ,Adherent, Conjoint where Adherent.matriculeEtap=Conjoint.matricule and  Conjoint.matricule=$matricule and Participant.matricule=Conjoint.cin  and Participation.idActivite=Activite.id and Participation.matriculePart=Conjoint.cin  and Participation.etat=1 and Participation.ETATPAYAIMENT=1 and Activite.id=Participation.idActivite and Adherent.matriculeEtap=$matricule Union All select Activite.id ,Enfant.prenom,  Enfant.nom ,Activite.nom_activite , Activite.date_debut , Activite.date_fin from Activite , participation , participant ,Adherent, Enfant where Enfant.matricule=Adherent.matriculeEtap and  Enfant.matricule=$matricule and Participant.matricule=Enfant.id  and Participation.idActivite=Activite.id and Participation.matriculePart=Enfant.id  and Participation.etat=1 and Participation.ETATPAYAIMENT=1 and Activite.id=Participation.idActivite  and Adherent.matriculeEtap=$matricule";
         		global $conn;
-            		$res=$conn->query($sql);
+            		$res=$conn->query
+				(
+					"select Activite.id ,Personnel.prenom,Personnel.nom, Activite.nom_activite , Activite.date_debut , 
+					Activite.date_fin
+					from Activite , Participation , Participant , Personnel , Adherent 
+					where Personnel.matricule=Adherent.matriculeEtap and 
+					Adherent.matriculeAmetap=Participant.matricule and 
+					Participant.matricule=Participation.matriculePart and 
+					Participation.matriculePart=Adherent.matriculeEtap and 
+					Participation.matriculePart=Participant.matricule and 
+					Personnel.matricule=Participation.matriculePart and 
+					Participation.matriculePart=$matricule and 
+					Participation.etat=1 and Participation.ETATPAYAIMENT=1 and 
+					Activite.id=Participation.idActivite and 
+					Adherent.matriculeEtap=$matricule 
+					Union All 
+					select Activite.id ,Conjoint.prenom, Conjoint.nom , Activite.nom_activite , Activite.date_debut , Activite.date_fin 
+					from Activite , participation , participant ,Adherent, Conjoint 
+					where Adherent.matriculeEtap=Conjoint.matricule and  
+					Conjoint.matricule=$matricule and Participant.matricule=Conjoint.cin  and 
+					Participation.idActivite=Activite.id and Participation.matriculePart=Conjoint.cin and 
+					Participation.etat=1 and 
+					Participation.ETATPAYAIMENT=1 and 
+					Activite.id=Participation.idActivite and 
+					Adherent.matriculeEtap=$matricule 
+					Union All 
+					select Activite.id ,Enfant.prenom,  Enfant.nom ,Activite.nom_activite , Activite.date_debut , Activite.date_fin 
+					from Activite , participation , participant ,Adherent, Enfant 
+					where Enfant.matricule=Adherent.matriculeEtap and  
+					Enfant.matricule=$matricule and 
+					Participant.matricule=Enfant.id and 
+					Participation.idActivite=Activite.id and 
+					Participation.matriculePart=Enfant.id and 
+					Participation.etat=1 and 
+					Participation.ETATPAYAIMENT=1 and 
+					Activite.id=Participation.idActivite and 
+					Adherent.matriculeEtap=$matricule"
+				);
 		 	$i=0;
 		 	$n=0;
             		while($tab=$res->fetch(PDO::FETCH_NUM))
