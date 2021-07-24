@@ -1,6 +1,6 @@
 <?php
-    require_once("connexion.php");
-	
+    	require_once("connexion.php");
+
 	class Adherent
 	{
 		private $cin;
@@ -14,6 +14,7 @@
 		
 		public function __construct()
 		{}
+		
 		public function insert($matriculeEtap,$matriculeAmetap,$login,$password)
 		{
 
@@ -111,22 +112,26 @@
 		public function affiche($login,$password)
 		{
 			$sql="select login , password from Adherent where login='$login' and password='$password' ";
-            global $conn;
-            $res=$conn->query($sql);
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-                $exampleArray = array('login'=>$tab[0]." ",'password'=>$tab[1],);
+            		global $conn;
+            		$res=$conn->query($sql);
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+                		$exampleArray = array('login'=>$tab[0]." ",'password'=>$tab[1],);
 			}
 			return json_encode($exampleArray);
 		}
 		
 		public function estMarie($matricule)
 		{
-			$sql="select Etat_civil from Personnel where matricule=$matricule" ;
 			global $conn;
-			$res=$conn->query($sql);
+			$res=$conn->query
+				(
+					"select Etat_civil
+					from Personnel 
+					where matricule=$matricule"
+				);
 			while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
+            		{
 				$etat_civil= $tab[0];
 			}
 			return $etat_civil;
@@ -134,11 +139,15 @@
 		
 		public function nombreEnfant($matricule)
 		{
-			$sql="select NBR_ENFANT from Personnel where matricule=$matricule" ;
 			global $conn;
-			$res=$conn->query($sql);
+			$res=$conn->query
+					(
+						"select NBR_ENFANT 
+						from Personnel 
+						where matricule=$matricule"
+					);
 			while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
+            		{
 				$nbr_enfant= $tab[0];
 			}
 			return $nbr_enfant;
@@ -146,11 +155,15 @@
 		
 		public function nombreEnfantEnregistrer($matricule)
 		{
-			$sql="select count(*) from Enfant where matricule=$matricule ";
 			global $conn;
-			$res=$conn->query($sql);
+			$res=$conn->query
+					(
+						"select count(*) 
+						from Enfant 
+						where matricule=$matricule"
+					);
 			while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
+            		{
 				$nbr_enfant= $tab[0];
 			}
 			return $nbr_enfant;
@@ -162,7 +175,7 @@
 			global $conn;
 			$res=$conn->query($sql);
 			while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
+            		{
 				$nbr_enfant= $tab[0];
 			}
 			return $nbr_enfant;
@@ -174,11 +187,10 @@
 			global $conn;
 			$res=$conn->query($sql);
 			while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
+            		{
 				$matricule= $tab[0];
 			}
 			return $matricule;
-			
 		}
 		
 		public function afficheFamile($matricule)
@@ -188,9 +200,15 @@
 			$res=$conn->query($sql);
 			$i=0;
 			$n=0;
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $T[$i]=$exampleArray = array('identificateur'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3] ,);
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$T[$i]=$exampleArray = array
+							(
+								'identificateur'=>$tab[0],
+								'nom'=>$tab[1],
+								'prenom'=>$tab[2],
+								'date_naissance'=>$tab[3]
+							);
 				$n=$i++;
 			}
 			return json_encode($T);
@@ -217,12 +235,11 @@
 			global $conn;
 			$res=$conn->query($sql);
 			$ch='';
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $ch=$tab[0];
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$ch=$tab[0];
 			}
 			return $ch;
 		}
 	}
-
 ?>
