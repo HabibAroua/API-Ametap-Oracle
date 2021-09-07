@@ -11,7 +11,7 @@
 	$db_username = "Ametap";
     $db_password = "informatique";
     try
-	{
+    {
         $conn = new PDO("oci:dbname=".$tns,$db_username,$db_password);
     }
 	catch(PDOException $e)
