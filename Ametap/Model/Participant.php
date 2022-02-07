@@ -1,5 +1,5 @@
 <?php
-    require_once('Connexion.php');
+	require_once('Connexion.php');
     
 	class Participant
 	{
@@ -8,9 +8,9 @@
 			
 		}
 		
-	    function insert($matricule,$date_inscription)
-	    {
-            $sql="insert into Participant values ($matricule,'$date_inscription')";
+	    	function insert($matricule,$date_inscription)
+	    	{
+			$sql="insert into Participant values ($matricule,'$date_inscription')";
 			global $conn;
 			$res=$conn->exec($sql);
 			if($res!=0)
@@ -21,7 +21,7 @@
 			{
 				return false;
 			}		
-	    }
+	    	}
 		
 		function deletes($matricule)
 		{
