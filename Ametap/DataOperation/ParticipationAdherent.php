@@ -1,5 +1,5 @@
 <?php
-    require_once('C:\oraclexe\trabajo\Ametap\Model\Participation.php');
+    	require_once('C:\oraclexe\trabajo\Ametap\Model\Participation.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Adherent.php');
 	require_once('C:\oraclexe\trabajo\Ametap\Model\Activite.php');
 	$a=new Adherent();
@@ -24,11 +24,10 @@
 			{
 				echo " Votre nombre des points ne sont pas suffisant car ils est inférieur à le nombre de point de l'activité";
 			}
-		    else
+		    	else
 			{
 				$p->insert($p->getDate_part(),$p->getMatriculePart(),$p->getIdActivite());
 			}
 		}
-	}
-	
+	}	
 ?>
