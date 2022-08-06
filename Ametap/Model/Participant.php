@@ -3,10 +3,6 @@
     
 	class Participant
 	{
-		function __construct()
-		{
-			
-		}
 		
 	    	function insert($matricule,$date_inscription)
 	    	{
