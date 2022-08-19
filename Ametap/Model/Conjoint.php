@@ -1,6 +1,7 @@
 <?php
-    require_once('Connexion.php');
-    class Conjoint
+	require_once('Connexion.php');
+    	
+	class Conjoint
 	{
 		private $cin;
 		private $nom;
@@ -119,9 +120,16 @@
 			$res=$conn->query($sql);
 			$i=0;
 			$n=0;
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $T[$i]=$exampleArray = array('cin'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3]." ",'metier'=>$tab[4] ,);
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$T[$i]=$exampleArray = array
+				(
+					'cin'=>$tab[0]." ",
+					'nom'=>$tab[1]." ",
+					'prenom'=>$tab[2]." ",
+					'date_naissance'=>$tab[3]." ",
+					'metier'=>$tab[4] ,
+				);
 				$n=$i++;
 			}
 			return json_encode($T);
@@ -150,9 +158,9 @@
 			$i=0;
 			$n=0;
 			$cin="";
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $cin=$tab[0];
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$cin=$tab[0];
 			}
 			if ($cin=="")
 			{
@@ -166,15 +174,15 @@
 		
 		public function getNombrePoint($matricule)
 		{
-			$sql="select distinct Adherent.NOMBRE_POINT from Adherent , Conjoint where Adherent.matriculeEtap=Conjoint.matricule and Conjoint.matricule=$matricule";
+			$sql="select distinct Adherent.NOMBRE_POINT from Adherent , Conjoint 
+				where Adherent.matriculeEtap=Conjoint.matricule and Conjoint.matricule=$matricule";
 			global $conn;
 			$res=$conn->query($sql);
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $r=$tab[0];
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$r=$tab[0];
 			}
 			return $r;
 		}
-	}	
-
+	}
 ?>
