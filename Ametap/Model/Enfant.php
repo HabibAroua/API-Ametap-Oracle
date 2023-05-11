@@ -1,5 +1,6 @@
 <?php
-    require_once('Connexion.php');
+    	require_once('Connexion.php');
+
 	class Enfant
 	{
 		private $id;
@@ -117,9 +118,16 @@
 			$res=$conn->query($sql);
 			$i=0;
 			$n=0;
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $T[$i]=$exampleArray = array('id'=>$tab[0]." ",'nom'=>$tab[1]." ",'prenom'=>$tab[2]." ",'date_naissance'=>$tab[3]." ",'ecole'=>$tab[4] ,);
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$T[$i]=$exampleArray = array
+							(
+								'id'=>$tab[0],
+								'nom'=>$tab[1],
+								'prenom'=>$tab[2],
+								'date_naissance'=>$tab[3],
+								'ecole'=>$tab[4]
+							);
 				$n=$i++;
 			}
 			return json_encode($T);
