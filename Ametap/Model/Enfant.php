@@ -142,15 +142,18 @@
 		
 		public function getNombrePoint($matricule)
 		{
-			$sql="select distinct Adherent.NOMBRE_POINT from Adherent , Enfant where Adherent.matriculeEtap=Enfant.matricule and Enfant.matricule=$matricule";
+			$sql="select distinct Adherent.NOMBRE_POINT from Adherent , Enfant 
+				where Adherent.matriculeEtap=Enfant.matricule
+				and 
+				Enfant.matricule=$matricule";
+			
 			global $conn;
 			$res=$conn->query($sql);
-            while($tab=$res->fetch(PDO::FETCH_NUM))
-            {
-               $r=$tab[0];
+            		while($tab=$res->fetch(PDO::FETCH_NUM))
+            		{
+               			$r=$tab[0];
 			}
 			return $r;
-			
 		}
 	}
 
