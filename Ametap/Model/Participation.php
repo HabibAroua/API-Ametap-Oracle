@@ -121,7 +121,10 @@
 		
 		public function afficheNotf($matricule)
 		{
-			$sql="select Participation.notif ,Activite.Nom_Activite from Participation , Activite where matriculePart=$matricule and Activite.id=IdActivite ";
+			$sql=	"
+   				select Participation.notif ,Activite.Nom_Activite from Participation , Activite 
+       				where matriculePart=$matricule and Activite.id=IdActivite 
+	   			";
 			global $conn;
 			$res=$conn->query($sql);
 			$i=0;
@@ -136,7 +139,19 @@
 		
 		public function afficheLastNotif($matricule)
 		{
-		    $sql="select Participation.Notif , Activite.NOM_ACTIVITE from Participation,Participant,Adherent,Personnel,Activite where Participation.id=(select MAX(Participation.id) from Participation where matriculePart=$matricule) and Adherent.matriculeAmetap=Personnel.matricule and Participant.matricule=Adherent.matriculeAmetap and Participation.matriculePart=Adherent.matriculeEtap and Participation.matriculePart=Participant.matricule and Activite.id=Participation.idActivite and Participation.matriculePart=$matricule";
+		    $sql="
+      				select Participation.Notif , Activite.NOM_ACTIVITE from Participation,Participant,Adherent,Personnel,Activite 
+	  			where 
+      					Participation.id=
+	   				(
+						select MAX(Participation.id) from Participation 
+      						where matriculePart=$matricule) and
+	    					Adherent.matriculeAmetap=Personnel.matricule and 
+	  					Participant.matricule=Adherent.matriculeAmetap and 
+						Participation.matriculePart=Adherent.matriculeEtap and 
+      						Participation.matriculePart=Participant.matricule and 
+	    					Activite.id=Participation.idActivite and Participation.matriculePart=$matricule
+	  		";
 			global $conn;
 			$res=$conn->query($sql);
 			$i=0;
